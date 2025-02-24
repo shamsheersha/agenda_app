@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "825391983087",
+    "project_id": "aganda-app",
+    "storage_bucket": "aganda-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825391983087:android:ffcb079f533586a42cae1a",
+        "android_client_info": {
+          "package_name": "com.example.agenda_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8EtlX1s5M17SQZXrp_J4NxWXFOb4p7RU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
