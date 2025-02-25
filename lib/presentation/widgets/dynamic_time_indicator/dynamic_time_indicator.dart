@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:agenda_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:agenda_app/core/theme/theme.dart';
 import 'package:agenda_app/data/enum/agenda_status.dart';
 
 class DynamicTimeIndicator extends StatefulWidget {
@@ -56,6 +56,26 @@ class _DynamicTimeIndicatorState extends State<DynamicTimeIndicator> {
     }
   }
 
+  Color _getBorderColor() {
+    switch (_currentStatus) {
+      case AgendaStatus.upcoming:
+        return AppColors.textSecondary; // Grey for upcoming
+      case AgendaStatus.inProgress:
+      case AgendaStatus.completed:
+        return AppColors.primaryBlue; // Blue for in progress and completed
+    }
+  }
+
+  Color _getCircleFillColor() {
+    switch (_currentStatus) {
+      case AgendaStatus.upcoming:
+      case AgendaStatus.inProgress:
+        return AppColors.white; // White/empty for upcoming and in progress
+      case AgendaStatus.completed:
+        return AppColors.primaryBlue; // Filled blue for completed
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,16 +86,10 @@ class _DynamicTimeIndicatorState extends State<DynamicTimeIndicator> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: _currentStatus == AgendaStatus.upcoming
-                  ? AppColors.textSecondary
-                  : AppColors.primaryBlue,
+              color: _getBorderColor(),
               width: 2,
             ),
-            color: _currentStatus == AgendaStatus.completed
-                ? AppColors.primaryBlue
-                : _currentStatus == AgendaStatus.inProgress
-                    ? AppColors.accent
-                    : AppColors.white,
+            color: _getCircleFillColor(),
           ),
         ),
         if (!widget.isLastItem)

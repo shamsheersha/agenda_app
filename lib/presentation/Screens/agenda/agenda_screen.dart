@@ -26,16 +26,17 @@ class AgendaScreen extends StatelessWidget {
         }
 
         if (state is AgendaLoaded) {
-          final now = DateTime.now();
           final activeAgendas = state.agenda.where((agenda) {
-            final agendaEndDateTime = DateTime(
-              agenda.date.year,
-              agenda.date.month,
-              agenda.date.day,
-              agenda.endTime.hour,
-              agenda.endTime.minute,
-            );
-            return agendaEndDateTime.isAfter(now);
+            final now = DateTime.now();
+            final today = DateTime(now.year, now.month, now.day);
+            final agendaDate =
+                DateTime(agenda.date.year, agenda.date.month, agenda.date.day);
+
+            if (agendaDate.isAtSameMomentAs(today)) {
+              return true;
+            }
+
+            return agendaDate.isAfter(today);
           }).toList();
           final groupedAgendas = _groupAgendaByDate(activeAgendas);
           final dates = groupedAgendas.keys.toList()..sort();

@@ -99,7 +99,12 @@ class AddAgendaScreenState extends State<AddAgendaScreen> {
                             final isSelected = date.day == selectedDate.day &&
                                 date.month == selectedDate.month &&
                                 date.year == selectedDate.year;
-                            final isPast = date.isBefore(DateTime.now());
+                            final isPast = date.year < DateTime.now().year ||
+                                (date.year == DateTime.now().year &&
+                                    date.month < DateTime.now().month) ||
+                                (date.year == DateTime.now().year &&
+                                    date.month == DateTime.now().month &&
+                                    date.day < DateTime.now().day);
 
                             return GestureDetector(
                               onTap: isPast
@@ -564,7 +569,6 @@ class AddAgendaScreenState extends State<AddAgendaScreen> {
       }
     }
   }
-
 
   void _showOverlapErrorDialog() {
     showDialog(
